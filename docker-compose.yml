@@ -1,0 +1,56 @@
+version: '3'
+services:
+  backend:
+    image: timmygunja/medical-data-backend:latest
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb+srv://turusov13:4diXHu8FgTwjWGv9@cluster0.fb4pw.mongodb.net/
+      - JWT_SECRET=jwt_secret
+
+  auth-service:
+    image: timmygunja/auth-service:latest
+    build: ./auth-service
+    ports:
+      - "3003:3003"
+    environment:
+      - MONGODB_URI=mongodb+srv://turusov13:4diXHu8FgTwjWGv9@cluster0.fb4pw.mongodb.net/
+      - JWT_SECRET=jwt_secret
+    depends_on:
+      - prometheus
+
+  encryption-service:
+    image: timmygunja/encryption-service:latest
+    build: ./encryption-service
+    ports:
+      - "3002:3002"
+    environment:
+      - ENCRYPTION_KEY=encryption_key
+    depends_on:
+      - prometheus
+
+  audit-service:
+    image: timmygunja/audit-service:latest
+    build: ./audit-service
+    ports:
+      - "3001:3001"
+    depends_on:
+      - prometheus
+
+  prometheus:
+    image: prom/prometheus:v2.37.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:8.5.2
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    volumes:
+      - ./grafana-datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+
