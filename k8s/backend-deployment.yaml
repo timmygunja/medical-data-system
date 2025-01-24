@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: medical-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: medical-data-backend:latest
+          imagePullPolicy: Never # Критчно для локальных обрзаов-images
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGODB_URI
+              value: "mongodb+srv://turusov13:4diXHu8FgTwjWGv9@cluster0.fb4pw.mongodb.net/"
+              # value: "mongodb://mongodb-service:27017/medical-data"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: medical-system
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

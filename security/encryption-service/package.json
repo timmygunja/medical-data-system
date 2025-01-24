@@ -1,0 +1,12 @@
+{
+  "name": "encryption-service",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
+    "winston": "^3.3.3",
+    "prom-client": "^15.1.3"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "audit-service",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "winston": "^3.3.3",
+    "mongoose": "^6.0.0",
+    "prom-client": "^15.1.3"
+  }
+}
