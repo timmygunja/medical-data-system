@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: medical-data-backend:latest
-          imagePullPolicy: Never # Критчно для локальных обрзаов-images
+          image: timmygunja/medical-data-backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:

@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: audit-service
-          image: audit-service:latest
-          imagePullPolicy: Never
+          image: timmygunja/audit-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3001
 ---
