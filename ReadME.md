@@ -1,58 +1,60 @@
 ## Project Tree:
 
-medical-data-system/
-├── app/
-│ ├── backend/
-│ │ ├── src/
-│ │ │ ├── models/
-│ │ │ │ └── patient.js
-│ │ │ └── server.js
-│ │ ├── Dockerfile
-│ │ └── package.json
-│ └── frontend/
-│ └── .DS_Store
-├── grafana/
-│ └── dashboard.json
-├── k8s/
-│ ├── audit-deployment.yaml
-│ ├── auth-deployment.yaml
-│ ├── backend-deployment.yaml
-│ ├── encryption-deployment.yaml
-│ ├── grafana-deployment.yaml
-│ ├── namespace.yaml
-│ └── prometheus-deployment.yaml
-├── monitoring/
-│ └── Dockerfile
-│ └── docker-compose.yaml
-├── security/
-│ ├── audit-service/
-│ │ ├── src/
-│ │ │ └── server.js
-│ │ ├── Dockerfile
-│ │ └── package.json
-│ ├── auth-service/
-│ │ ├── src/
-│ │ │ ├── models/
-│ │ │ │ └── user.js
-│ │ │ └── server.js
-│ │ ├── Dockerfile
-│ │ └── package.json
-│ └── encryption-service/
-│ ├── src/
-│ │ └── server.js
-│ ├── Dockerfile
-│ └── package.json
-│ └── .DS_Store
-├── .DS_Store
-├── ReadME.md
-├── check-env.js
-├── check-logs.js
-├── load-test.js
-├── package-lock.json
-├── package.json
-├── run-container.js
-├── test-system.js
-└── verify-services.js
+```bash
+📦medical-data-system
+┣ 📂app
+┃ ┣ 📂backend
+┃ ┃ ┣ 📂src
+┃ ┃ ┃ ┣ 📂models
+┃ ┃ ┃ ┃ ┗ 📜patient.js
+┃ ┃ ┃ ┗ 📜server.js
+┃ ┃ ┣ 📜Dockerfile
+┃ ┃ ┗ 📜package.json
+┃ ┣ 📂frontend
+┃ ┗ 📜.DS_Store
+┣ 📂grafana
+┃ ┗ 📜dashboard.json
+┣ 📂k8s
+┃ ┣ 📜audit-deployment.yaml
+┃ ┣ 📜auth-deployment.yaml
+┃ ┣ 📜backend-deployment.yaml
+┃ ┣ 📜encryption-deployment.yaml
+┃ ┣ 📜grafana-deployment.yaml
+┃ ┣ 📜namespace.yaml
+┃ ┗ 📜prometheus-deployment.yaml
+┣ 📂monitoring
+┃ ┗ 📂Dockerfile
+┃ ┃ ┗ 📜docker-compose.yaml
+┣ 📂security
+┃ ┣ 📂audit-service
+┃ ┃ ┣ 📂src
+┃ ┃ ┃ ┗ 📜server.js
+┃ ┃ ┣ 📜Dockerfile
+┃ ┃ ┗ 📜package.json
+┃ ┣ 📂auth-service
+┃ ┃ ┣ 📂src
+┃ ┃ ┃ ┣ 📂models
+┃ ┃ ┃ ┃ ┗ 📜user.js
+┃ ┃ ┃ ┗ 📜server.js
+┃ ┃ ┣ 📜Dockerfile
+┃ ┃ ┗ 📜package.json
+┃ ┣ 📂encryption-service
+┃ ┃ ┣ 📂src
+┃ ┃ ┃ ┗ 📜server.js
+┃ ┃ ┣ 📜Dockerfile
+┃ ┃ ┗ 📜package.json
+┃ ┗ 📜.DS_Store
+┣ 📜.DS_Store
+┣ 📜ReadME.md
+┣ 📜check-env.js
+┣ 📜check-logs.js
+┣ 📜load-test.js
+┣ 📜package-lock.json
+┣ 📜package.json
+┣ 📜run-container.js
+┣ 📜test-system.js
+┗ 📜verify-services.js
+```
 
 ## LOCAL DEVELOPMENT LORE:
 
@@ -66,9 +68,10 @@ docker build -t encryption-service:latest ./security/encryption-service
 
 kubectl rollout restart deployment backend audit-service auth-service encryption-service -n medical-system
 
-### To test the complete system:
+## To test the complete system:
 
-Delete existing resources
+### Delete existing resources
+
 kubectl delete namespace medical-system
 kubectl create namespace medical-system
 
